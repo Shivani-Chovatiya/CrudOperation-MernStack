@@ -33,9 +33,10 @@ app.use("/api/users", usersRoutes);
 app.use(errorHandler);
 
 const PORT = 8080;
-app.listen(process.env.PORT || PORT, () => {
-  console.log(
-    `Server Running in ${process.env.NODE_ENV} Mode on port ${process.env.PORT}`
-      .inverse
-  );
-});
+app.listen(
+  // process.env.PORT ||
+  PORT,
+  () => {
+    console.log(`Server Running in development Mode on port ${PORT}`.inverse);
+  }
+);
