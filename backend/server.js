@@ -17,16 +17,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "/frontend/build")));
-//   app.get("*", (res, req) => {
-//     res.sendFile(path.resolve(__dirname, "forntend", "build", "index.html"));
-//   });
-// } else {
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to Node Server</h1>");
-});
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+  app.get("*", (res, req) => {
+    res.sendFile(path.resolve(__dirname, "forntend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("<h1>Welcome to Node Server</h1>");
+  });
+}
 
 app.use("/api/users", usersRoutes);
 
