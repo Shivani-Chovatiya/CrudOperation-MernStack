@@ -27,7 +27,7 @@ const EditUsers = ({ history }) => {
   const { userInfo } = userLogin;
 
   const updatePrductState = useSelector((state) => state.userUpdateProfile);
-  const { updateloading, updatesuccess, updateerror } = updatePrductState;
+  const { updateloading, success, updateerror } = updatePrductState;
 
   const param = useParams();
   console.log(param.userId);
@@ -81,7 +81,7 @@ const EditUsers = ({ history }) => {
         {error && <Message varient="danger">{error}</Message>}
         {loading && <Loader />}
         {message && <Message variant="danger">{message}</Message>}
-
+        {success && <Message variant="success">Updated Successfully</Message>}
         <Form onSubmit={submitForm}>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  Nav,
   Form,
   Row,
   Col,
@@ -7,15 +8,17 @@ import {
   Button,
   FormControl,
   ButtonGroup,
+  NavDropdown,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+// import { LinkContainer } from "react-router-bootstrap";
 import Userlist from "./CrudOperatin/Userlist";
 import AddNewUser from "./CrudOperatin/AddNewUser";
 import EditUsers from "./CrudOperatin/EditUsers";
 import UserDetail from "./CrudOperatin/UserDetail";
-import { searchProduct } from "../actions/userAction";
+import { logout, searchProduct } from "../actions/userAction";
 
 const AdminScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -23,6 +26,18 @@ const AdminScreen = ({ history }) => {
 
   const dispatch = useDispatch();
 
+  const redirect = "/";
+  useEffect(() => {
+    if (!userInfo) {
+      history.push(redirect);
+    }
+  }, [history, userInfo, redirect]);
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    //console.log("Logout");
+  };
   const [searchCriteria, setsearchCriteria] = useState("Name");
 
   const [searchkey, setsearchkey] = useState("");
@@ -30,8 +45,44 @@ const AdminScreen = ({ history }) => {
   return (
     <>
       <Container>
+        <Row className="text-center bg-dark text-light p-3">
+          <Col>
+            <h1>DashBoard</h1>
+          </Col>
+          <Col md={2}>
+            {userInfo ? (
+              <NavDropdown title={userInfo.name}>
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Link to="/">
+                {/* <Nav.Link> */}
+                <i className="fas fa-user"></i>
+                &nbsp; login
+                {/* </Nav.Link> */}
+              </Link>
+            )}
+          </Col>
+        </Row>
         <Row>
-          <h1 className="text-center bg-dark text-light p-3">DashBoard</h1>
+          {/* <h1 className="text-center bg-dark text-light p-3">DashBoard</h1> */}
+          {/* {userInfo ? (
+            <NavDropdown title={userInfo.name}>
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <Link to="/">
+            
+              <i className="fas fa-user"></i>
+              &nbsp; login
+             
+            </Link>
+          )} */}
+
           <Col md={3}>
             <ButtonGroup
               // vertical
@@ -39,6 +90,7 @@ const AdminScreen = ({ history }) => {
               style={{
                 minHeight: "10px",
                 minWidth: "700px",
+                "margin-top": "10px",
               }}
             >
               <Button

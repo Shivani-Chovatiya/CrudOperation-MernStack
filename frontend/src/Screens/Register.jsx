@@ -22,7 +22,7 @@ const Register = ({ location, history }) => {
   const [message, setMessage] = useState("");
   const [image, setimage] = useState("");
 
-  const redirect = location.search ? location.search.split("=")[1] : "/admin";
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
@@ -270,7 +270,7 @@ const Register = ({ location, history }) => {
         <Row>
           <Col>
             Have an account !
-            <Link to={redirect ? `login?redirect=${redirect}` : "/login"}>
+            <Link to={redirect ? `login?redirect=${redirect}` : "/"}>
               Login
             </Link>
           </Col>

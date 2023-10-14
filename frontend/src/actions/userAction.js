@@ -24,12 +24,12 @@ import {
   // FORGOT_PASSWORD_FAIL,
 } from "../constants/userConstants";
 
-// export const logout = () => (dispatch) => {
-//   localStorage.removeItem("userInfo");
-//   dispatch({ type: ORDER_LIST_MY_RESET });
-//   dispatch({ type: USER_DETAILS_RESET });
-//   dispatch({ type: USER_LOGOUT });
-// };
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("userInfo");
+
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: USER_LOGOUT });
+};
 
 export const login = (email, password) => async (dispatch) => {
   try {

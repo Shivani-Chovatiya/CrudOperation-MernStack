@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// console.log(path.join(__dirname, "../frontend/build"));
+console.log(path.join(__dirname, "../frontend/build"));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (res, req) => {
