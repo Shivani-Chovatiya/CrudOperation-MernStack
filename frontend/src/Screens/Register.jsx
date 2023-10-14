@@ -70,7 +70,7 @@ const Register = ({ location, history }) => {
             <Form.Label>Image</Form.Label>
 
             <Form.Control
-              type="file"
+              type="url"
               value={image}
               onChange={(e) => setimage(e.target.value)}
               placeholder="Add Image URL"

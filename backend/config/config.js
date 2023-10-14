@@ -6,7 +6,9 @@ const connectDb = async () => {
       // process.env.MONGO_URI,
       // "mongodb://0.0.0.0:27017/Crud",
       // "mongodb://127.0.0.1:27017/Crud",
-      "mongodb://localhost:27017/Crud",
+      // "mongodb://localhost:27017/Crud",
+      "mongodb+srv://chovatiyashivani:GHY5ausg8BEYdD2n@cluster0.sjgygtp.mongodb.net/CrudOperation",
+      // GHY5ausg8BEYdD2n
       {
         useUnifiedTopology: true,
         useNewUrlParser: true,
