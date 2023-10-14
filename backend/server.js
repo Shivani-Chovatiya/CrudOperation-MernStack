@@ -17,10 +17,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// console.log(path.join(__dirname, "../frontend/build"));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (res, req) => {
-    res.sendFile(path.join(__dirname, './frontend/build/index.html'));
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
   });
 } else {
   app.get("/", (req, res) => {
